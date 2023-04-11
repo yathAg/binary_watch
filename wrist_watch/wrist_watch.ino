@@ -1,3 +1,11 @@
+// Low Power settings
+// BOD 1.8v
+// BootLoader Yes (UART0)
+// CLock Internal 1Mhz
+// EEPROM EEPROM retained
+// Compiler LTO LTO Disabled
+// Varient 328/328PA
+
 //-----------LED Settings-----------
 const int row[4] = {3, 4, 5, 6};  // pins for A, B, C, D rows in the LED matrix. see drawing in instructions
 const int col[4] = {7, 8, 9, 10}; // pins for 1, 2, 3, 4 columns in the LED matrix
@@ -27,14 +35,13 @@ void displayRow(int, byte);
 
 void setup()
 {
-  //  Serial.begin(9600);
 
+  rtc.begin();
   // do you want to set the time? uncomment this line after first upload and time has been set
-  // rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-  // rtc.adjust(DateTime(2021, 11, 29, 19, 41  , 0));   //year, month, day, hour, minute, second
+  //rtc.adjust(DateTime(2023, 04, 12, 00, 16, 0)); // year, month, day, hour, minute, second
 
   pinMode(pushBtn, INPUT_PULLUP);
-  for (int i = 0; i < 4; i++) // turns all LEDs completely off
+  for (int i = 0; i < 4; i++) // Defines all LEDs pins as OUTPUT
   {
     pinMode(row[i], OUTPUT);
     pinMode(col[i], OUTPUT);
